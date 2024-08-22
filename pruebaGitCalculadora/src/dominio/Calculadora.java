@@ -45,6 +45,9 @@ public class Calculadora {
 		case 2:
 			resultado = a / b;
 			break;
+			default:
+				System.out.println("Opcion incorrecta");
+				break;
 		}
 		
 //		if(opcion.equals(1)){
