@@ -1,75 +1,73 @@
 package dominio;
-
 import java.util.Scanner;
 
 public class Calculadora {
 
+	private static Scanner teclado = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		
-		Scanner teclado = new Scanner(System.in);
-		
-		Integer a;
-
-		Integer b;
-
-		Integer opcion;
-
-		Integer resultado = null;
+		Integer a, b, opcion, resultado;
 
 		do{
+			opcion = ingresarInteger("**CALCULADORA**\n1 SUMA\n2 RESTA\n3 MULTIPLICACION\n4 DIVISION\nIngrese su operación:");
+		} while(opcion < 1 || opcion > 4);
 
-		System.out.println("Ingrese su operación /n 1 para sumar /n 2 para restar /n 3 para multiplicar /n 4 para dividir");
-		opcion = teclado.nextInt();
+		a = ingresarInteger("Ingrese el primer numero");
+		b = ingresarInteger("Ingrese el segundo numero");
 
-		}while(opcion < 1 && opcion > 4);
+		resultado = calculadora(opcion, a, b);
 
-		System.out.println("Ingrese el primer numero");
-
-		a = teclado.nextInt();
-
-		System.out.println("Ingrese el segundo numero");
-
-		b = teclado.nextInt();
-
-		
-		switch (opcion) {
-		case 3:
-			resultado = a + b;
-			break;
-		case 4: 
-			resultado = a - b;
-			break;
-		case 1:
-			resultado = a * b;
-			break;
-		case 2:
-			resultado = a / b;
-			break;
+		mostrarPorPantalla("El resultado es " + resultado.toString());
+	
+	}
+	
+		private static Integer calculadora(Integer opcion, Integer valor1, Integer valor2) {
+			
+			Integer resultado = null;
+			
+			switch (opcion) {
+			case 1:
+				resultado = operacionSumar(valor1, valor2);
+				break;
+			case 2: 
+				resultado = operacionRestar(valor1, valor2);
+				break;
+			case 3:
+				resultado = operacionMultiplicar(valor1, valor2);
+				break;
+			case 4:
+				resultado = operacionDividir(valor1, valor2);
+				break;
 			default:
 				System.out.println("Opcion incorrecta");
 				break;
+			}
+			return resultado;
+		}
+	
+		private static Integer ingresarInteger(String mensaje) {
+			mostrarPorPantalla(mensaje);
+			return teclado.nextInt();
+		}
+	
+		private static void mostrarPorPantalla(String mensaje) {
+			System.out.println(mensaje);
 		}
 		
-//		if(opcion.equals(1)){
-//
-//		resultado = a + b;
-//
-//		}else if(opcion.equals(2)){
-//
-//		resultado = a - b;
-//
-//		}else if(opcion.equals(3)){
-//
-//		resultado = a * b;
-//
-//		}else{
-//
-//		resultado = a / b;
-//
-//		}
-
-		System.out.println("El resultado es " + resultado.toString());
-
+		private static Integer operacionSumar(Integer valor1, Integer valor2) {
+			return valor1 + valor2;
+		}
+	
+		private static Integer operacionRestar(Integer valor1, Integer valor2) {
+			return valor1 - valor2;
+		}
+		
+		private static Integer operacionMultiplicar(Integer valor1, Integer valor2) {
+			return valor1 * valor2;
+		}
+		
+		private static Integer operacionDividir(Integer valor1, Integer valor2) {
+			return valor1 / valor2;
 		}
 	}
-
